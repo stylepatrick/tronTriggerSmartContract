@@ -1,11 +1,11 @@
-package com.stylepatrick.tronTriggerSmartContract.dto;
+package com.stylepatrick.tronTriggerSmartContract.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class TrxAddressDto {
+public class GetAccountBalanceDto {
 
     private String address;
 

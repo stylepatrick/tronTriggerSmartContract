@@ -1,7 +1,12 @@
 package com.stylepatrick.tronTriggerSmartContract.service;
 
 import com.stylepatrick.tronTriggerSmartContract.TronTriggerSmartContractConfig;
-import com.stylepatrick.tronTriggerSmartContract.dto.*;
+import com.stylepatrick.tronTriggerSmartContract.dto.request.GetAccountBalanceDto;
+import com.stylepatrick.tronTriggerSmartContract.dto.request.CreateTransactionDto;
+import com.stylepatrick.tronTriggerSmartContract.dto.request.SignTransactionDto;
+import com.stylepatrick.tronTriggerSmartContract.dto.request.TriggerSmartContractDto;
+import com.stylepatrick.tronTriggerSmartContract.dto.result.AccountBalanceResultDto;
+import com.stylepatrick.tronTriggerSmartContract.dto.result.SmartContractResultDto;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -24,29 +29,29 @@ public class TronTriggerSmartContractService {
         this.tronTriggerSmartContractConfig = tronTriggerSmartContractConfig;
     }
 
-    public AccountBalanceDto getBalance(TrxAddressDto trxAddressDto){
-        ResponseEntity<AccountBalanceDto> res = restTemplate()
-                .postForEntity(tronTriggerSmartContractConfig.getApiUrl() + "/wallet/getaccount", trxAddressDto, AccountBalanceDto.class);
+    public AccountBalanceResultDto getBalance(GetAccountBalanceDto getAccountBalanceDto) {
+        ResponseEntity<AccountBalanceResultDto> res = restTemplate()
+                .postForEntity(tronTriggerSmartContractConfig.getApiUrl() + "/wallet/getaccount", getAccountBalanceDto, AccountBalanceResultDto.class);
         return res.getBody();
     }
 
-    public TrxTransactionDto buildTransaction(String toAddress, String fromAddress, Integer amount, Integer permissionId) {
-        TrxCreateTransactionDto trxCreateTransactionDto = new TrxCreateTransactionDto();
-        trxCreateTransactionDto.setTo_address(toAddress);
-        trxCreateTransactionDto.setOwner_address(fromAddress);
-        trxCreateTransactionDto.setAmount(amount);
-        trxCreateTransactionDto.setPermission_id(permissionId);
-        ResponseEntity<TrxTransactionDto> res = restTemplate()
-                .postForEntity(tronTriggerSmartContractConfig.getApiUrl() + "/wallet/createtransaction", trxCreateTransactionDto, TrxTransactionDto.class);
+    public Object buildTransaction(String toAddress, String fromAddress, Integer amount, Integer Permission_id) {
+        CreateTransactionDto createTransactionDto = new CreateTransactionDto();
+        createTransactionDto.setTo_address(toAddress);
+        createTransactionDto.setOwner_address(fromAddress);
+        createTransactionDto.setAmount(amount);
+        createTransactionDto.setPermission_id(Permission_id);
+        ResponseEntity<Object> res = restTemplate()
+                .postForEntity(tronTriggerSmartContractConfig.getApiUrl() + "/wallet/createtransaction", createTransactionDto, Object.class);
         return res.getBody();
     }
 
     public Object signTransaction(Object transaction, String privateKey) {
-        TrxSignTransactionDto trxSignTransactionDto = new TrxSignTransactionDto();
-        trxSignTransactionDto.setTransaction(transaction);
-        trxSignTransactionDto.setPrivateKey(privateKey);
+        SignTransactionDto signTransactionDto = new SignTransactionDto();
+        signTransactionDto.setTransaction(transaction);
+        signTransactionDto.setPrivateKey(privateKey);
         ResponseEntity<Object> res = restTemplate()
-                .postForEntity(tronTriggerSmartContractConfig.getApiUrl() + "/wallet/gettransactionsign", trxSignTransactionDto, Object.class);
+                .postForEntity(tronTriggerSmartContractConfig.getApiUrl() + "/wallet/gettransactionsign", signTransactionDto, Object.class);
         return res.getBody();
     }
 
@@ -56,9 +61,9 @@ public class TronTriggerSmartContractService {
         return res.getBody();
     }
 
-    public Object triggerSmartContract(TrxTriggerSmartContractDto trxTriggerSmartContractDto) {
-        ResponseEntity<Object> res = restTemplate()
-                .postForEntity(tronTriggerSmartContractConfig.getApiUrl() + "/wallet/triggersmartcontract", trxTriggerSmartContractDto, Object.class);
+    public SmartContractResultDto triggerSmartContract(TriggerSmartContractDto triggerSmartContractDto) {
+        ResponseEntity<SmartContractResultDto> res = restTemplate()
+                .postForEntity(tronTriggerSmartContractConfig.getApiUrl() + "/wallet/triggersmartcontract", triggerSmartContractDto, SmartContractResultDto.class);
         return res.getBody();
     }
 

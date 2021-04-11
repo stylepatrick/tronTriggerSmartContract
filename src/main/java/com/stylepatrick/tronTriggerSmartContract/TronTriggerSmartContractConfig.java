@@ -13,4 +13,7 @@ public class TronTriggerSmartContractConfig {
     @Value("${tronApi.url}")
     private String apiUrl;
 
+    @Value("${tronApi.sleep}")
+    private Integer sleep;
+
 }

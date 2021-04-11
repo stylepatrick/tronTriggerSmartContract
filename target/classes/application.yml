@@ -1,2 +1,3 @@
 tronApi:
     url: http://18.228.15.36:8090
+    sleep: 10000
