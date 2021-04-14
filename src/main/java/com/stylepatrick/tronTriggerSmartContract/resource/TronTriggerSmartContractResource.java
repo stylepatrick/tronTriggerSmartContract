@@ -60,6 +60,10 @@ public class TronTriggerSmartContractResource {
         triggerSmartContractDto.setContract_address(smartContractDto.getContractAddress());
         triggerSmartContractDto.setOwner_address(smartContractDto.getTriggerAddress().getAddress());
         triggerSmartContractDto.setPermission_id(smartContractDto.getTriggerAddress().getPermissionId());
+        triggerSmartContractDto.setCall_value(smartContractDto.getCallValue());
+        triggerSmartContractDto.setFee_limit(smartContractDto.formatFeeLimit());
+        triggerSmartContractDto.setFunction_selector(smartContractDto.getFunction());
+        triggerSmartContractDto.setParameter(smartContractDto.getParameter());
 
         // Trigger Smart Contract
         SmartContractResultDto smartContractResultDto = tronTriggerSmartContractService.triggerSmartContract(triggerSmartContractDto);
@@ -72,6 +76,9 @@ public class TronTriggerSmartContractResource {
 
         // Broadcast triggerContract
         tronTriggerSmartContractService.brodcastTransaction(signSmartContractTransaction);
+
+        // Wait n seconds
+        Thread.sleep(tronTriggerSmartContractConfig.getSleep());
 
         //************************ Get new balance from triggerAddress and send all back to mainAddress ********************************\\
         GetAccountBalanceDto getAccountBalanceDto = new GetAccountBalanceDto();

@@ -15,7 +15,7 @@ public class CreateTransactionDto {
     private Integer amount;
 
     @JsonProperty("Permission_id")
-    private Integer Permission_id = 2;
+    private Integer Permission_id;
 
     // Optional,whether the address is in base58 format; true if yes
     private Boolean visible = true;
