@@ -1,5 +1,6 @@
 # tronTriggerSmartContract
-There are two main functions:
+
+Send x TRX coins and triggers a smart contract with Spring Boot 2. There are two main functions. Trigger smart contract on single address manually via rest API, or asynchronous via planned scheduler on multiply addresses from a .csv file.
 
 #### 1. Trigger a smart contract with the rest API:
 
