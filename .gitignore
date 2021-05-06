@@ -1,3 +1,9 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
 # Compiled class file
 *.class
 
@@ -24,3 +30,7 @@ hs_err_pid*
 
 # IDEs and editors
 .idea/
+
+# Exclude Wallet Files
+wallets.csv
+application-dev.yml
