@@ -1,4 +1,4 @@
-package com.stylepatrick.tronTriggerSmartContract.dto;
+package com.stylepatrick.tronTriggerSmartContract.entity;
 
 import lombok.Getter;
 import lombok.Setter;

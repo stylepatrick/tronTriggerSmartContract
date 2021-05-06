@@ -1,12 +1,13 @@
-package com.stylepatrick.tronTriggerSmartContract.dto.request;
+package com.stylepatrick.tronTriggerSmartContract.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.ResponseEntity;
 
 @Getter
 @Setter
-public class TriggerSmartContractDto {
+public class TriggerSmartContract extends RestTemplateBase {
 
     private String owner_address;
     private String contract_address;
@@ -20,5 +21,11 @@ public class TriggerSmartContractDto {
 
     // Optional,whether the address is in base58 format; true if yes
     private Boolean visible = true;
+
+    public TriggerSmartContractResult triggerSmartContract(String apiUrl) {
+        ResponseEntity<TriggerSmartContractResult> res = restTemplate()
+                .postForEntity(apiUrl + "/wallet/triggersmartcontract", this, TriggerSmartContractResult.class);
+        return res.getBody();
+    }
 
 }

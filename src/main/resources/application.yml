@@ -1,3 +1,16 @@
 tronApi:
-    url: http://18.228.15.36:8090
-    sleep: 10000
+  url: ${API_URL}
+  sleep: ${SLEEP}
+
+mainAddress:
+  address: ${MAIN_ADDRESS}
+  privateKey: ${MAIN_PK}
+  permissionId: ${MAIN_PERMID}
+  exchangeAmount: ${EXCHANGE_AMOUNT}
+
+contract:
+  address: ${CONTRACT_ADDRESS}
+  callValue: ${CONTRACT_CALLVALUE}
+  feeLimit: ${CONTRACT_FEELIMIT}
+  function: ${CONTRACT_FUNCTION}
+  parameter: ${CONTRACT_PARAMETER}

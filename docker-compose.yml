@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+  tronTriggerSmartContract:
+    image: stylepatrick/tron-trigger-smart-contract:0.0.1
+    restart: always
+    ports:
+      - "8302:8080"
+    environment:
+      API_URL: API_URL
+      SLEEP: SLEEP
+      MAIN_ADDRESS: MAIN_ADDRESS
+      MAIN_PK: MAIN_PK
+      MAIN_PERMID: MAIN_PERMID
+      EXCHANGE_AMOUNT: EXCHANGE_AMOUNT
+      CONTRACT_ADDRESS: CONTRACT_ADDRESS
+      CONTRACT_CALLVALUE: CONTRACT_CALLVALUE
+      CONTRACT_FEELIMIT: CONTRACT_FEELIMIT
+      CONTRACT_FUNCTION: CONTRACT_FUNCTION
+      CONTRACT_PARAMETER: CONTRACT_PARAMETER
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"
+    volumes:
+      - ./wallets.csv:/src/wallets.csv:ro
