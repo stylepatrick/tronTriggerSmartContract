@@ -1,16 +1,16 @@
 # tronTriggerSmartContract
-There are two main function from this application:
+There are two main functions:
 
 #### 1. Trigger a smart contract with the rest API:
 
 Send x TRX coins from the main address to the trigger address and triggers a given smart contract function.
    
-1. Sends x (amount) TRX from mainAddress to triggerAddress
+1. Sends x TRX from mainAddress to triggerAddress
 2. Wait n seconds
-3. Trigger a smart contract (contractAddress) on the triggerAddress
+3. Trigger a smart contract on the triggerAddress
 4. Get new balance on triggerAddress and sends whole amount back to mainAddress 
    
-Example Post Request
+Example Post Request (/api/trigger)
 ```
 {
     "mainAddress": {
@@ -37,10 +37,11 @@ Example Post Request
 There is a scheduler running every 30s which checks the balance on the smart contract address.
 
 If the balance is > 1000 TRX then:
-1. Sends x (amount) TRX from mainAddress to triggerAddress
+1. Sends x TRX from mainAddress to triggerAddress
 2. Wait n seconds
-3. Trigger a smart contract (contractAddress) on the triggerAddress
+3. Trigger a smart contract on the triggerAddress
 4. Get new balance on triggerAddress and sends whole amount back to mainAddress 
    
-This steps will start asynchronous on all addresses given in the .csv file.
+This steps will start asynchronous on all addresses given in the .csv file. 
+When every address in the .csv list is done the functions are re-startable via a rest API endpoint (/inspector/reset)
 
