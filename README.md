@@ -44,5 +44,5 @@ If the balance is > 1000 TRX then:
 4. Get new balance on triggerAddress and sends whole amount back to mainAddress 
    
 This steps will start asynchronous on all addresses given in the .csv file. 
-When every address in the .csv list is done the functions are re-startable via a rest API endpoint (/inspector/reset)
+When every address in the .csv list is done the functions are re-startable via a rest API endpoint (/inspector/reset).
 
